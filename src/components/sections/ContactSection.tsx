@@ -53,15 +53,27 @@ export const ContactSection = () => {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Compose mailto link
+    const subject = encodeURIComponent(`New Consultation Request from ${formData.name.trim()}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name.trim()}\n` +
+      `Email: ${formData.email.trim()}\n` +
+      `Company: ${formData.company.trim() || 'N/A'}\n\n` +
+      `Project Details:\n${formData.message.trim()}`
+    );
+    
+    // Open mailto
+    window.location.href = `mailto:work.gunitvarshney@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Brief delay to allow mailto to open
+    await new Promise(resolve => setTimeout(resolve, 500));
     
     setIsSubmitting(false);
     setIsSubmitted(true);
     
     toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you within 24 hours.",
+      title: "Email client opened!",
+      description: "Please send the email to complete your consultation request.",
     });
   };
 

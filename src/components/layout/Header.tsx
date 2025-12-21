@@ -62,7 +62,11 @@ export const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:block">
-            <Button variant={isScrolled ? "cta" : "hero"} size="default">
+            <Button 
+              variant={isScrolled ? "cta" : "hero"} 
+              size="default"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Book Consultation
             </Button>
           </div>
@@ -94,7 +98,14 @@ export const Header = () => {
                   {link.label}
                 </a>
               ))}
-              <Button variant="cta" className="mt-4">
+              <Button 
+                variant="cta" 
+                className="mt-4"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Book Consultation
               </Button>
             </nav>
