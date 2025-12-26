@@ -47,7 +47,7 @@ export const ContactSection = () => {
   };
 
   const FORMSPREE_ENDPOINT = "https://formspree.io/f/mreggavw"; 
-  // 👆 replace XXXXYYYY with your real Formspree ID
+  // 👆 Make sure this Formspree form ID is configured to send emails to gunitvarshney@gmail.com
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,6 +61,7 @@ export const ContactSection = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
@@ -72,24 +73,35 @@ export const ContactSection = () => {
         }),
       });
   
-      if (response.ok) {
+      const data = await response.json();
+  
+      // Check if Formspree returned an error in the response body
+      if (response.ok && !data.error) {
+        // Success - Formspree accepted the submission
         setIsSubmitted(true);
         setFormData({ name: "", email: "", company: "", message: "" });
   
         toast({
           title: "Message sent",
-          description: "We’ll get back to you shortly.",
+          description: "We'll get back to you shortly.",
         });
       } else {
+        // Formspree returned an error
+        const errorMessage = data.error || data.message || "Failed to send message";
+        console.error("Formspree error:", errorMessage, data);
+        
         toast({
           title: "Failed to send",
-          description: "Please try again or email us directly.",
+          description: errorMessage || "Please check your Formspree configuration or try again later.",
+          variant: "destructive",
         });
       }
     } catch (error) {
+      console.error("Form submission error:", error);
       toast({
         title: "Network error",
-        description: "Check your internet and try again.",
+        description: "Check your internet connection and try again.",
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
