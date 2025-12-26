@@ -131,9 +131,10 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-sm text-primary-foreground/70">Email us at</p>
-                  <a href="mailto:hello@alchemistlabs.com" className="font-semibold hover:text-accent transition-colors">
+                  <p className="font-semibold">
                     hello@alchemistlabs.com
-                  </a>
+                  </p>
+
                 </div>
               </div>
 
