@@ -46,36 +46,56 @@ export const ContactSection = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mreggavw"; 
+  // 👆 replace XXXXYYYY with your real Formspree ID
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+  
     if (!validateForm()) return;
-    
+  
     setIsSubmitting(true);
-    
-    // Compose mailto link
-    const subject = encodeURIComponent(`New Consultation Request from ${formData.name.trim()}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name.trim()}\n` +
-      `Email: ${formData.email.trim()}\n` +
-      `Company: ${formData.company.trim() || 'N/A'}\n\n` +
-      `Project Details:\n${formData.message.trim()}`
-    );
-    
-    // Open mailto
-    window.location.href = `mailto:work.gunitvarshney@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Brief delay to allow mailto to open
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    toast({
-      title: "Email client opened!",
-      description: "Please send the email to complete your consultation request.",
-    });
+  
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || "N/A",
+          message: formData.message,
+          _subject: `New Lead from ${formData.name}`,
+          _replyto: formData.email,
+        }),
+      });
+  
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", company: "", message: "" });
+  
+        toast({
+          title: "Message sent",
+          description: "We’ll get back to you shortly.",
+        });
+      } else {
+        toast({
+          title: "Failed to send",
+          description: "Please try again or email us directly.",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Network error",
+        description: "Check your internet and try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
