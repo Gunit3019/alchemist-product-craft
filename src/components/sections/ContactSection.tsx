@@ -47,7 +47,8 @@ export const ContactSection = () => {
   };
 
   const FORMSPREE_ENDPOINT = "https://formspree.io/f/mreggavw"; 
-  // 👆 Make sure this Formspree form ID is configured to send emails to gunitvarshney@gmail.com
+  // 👆 IMPORTANT: Go to https://formspree.io/forms/mreggavw/settings
+  // and configure the recipient email to: work.gunitvarshney@gmail.com
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,8 +69,9 @@ export const ContactSection = () => {
           email: formData.email,
           company: formData.company || "N/A",
           message: formData.message,
-          _subject: `New Lead from ${formData.name}`,
+          _subject: `New Contact Form Submission from ${formData.name}`,
           _replyto: formData.email,
+          _format: "plain",
         }),
       });
   
@@ -80,7 +82,9 @@ export const ContactSection = () => {
         // Success - Formspree accepted the submission
         setIsSubmitted(true);
         setFormData({ name: "", email: "", company: "", message: "" });
-  
+        setErrors({});
+
+        console.log("Form submitted successfully to Formspree");
         toast({
           title: "Message sent",
           description: "We'll get back to you shortly.",
@@ -89,10 +93,12 @@ export const ContactSection = () => {
         // Formspree returned an error
         const errorMessage = data.error || data.message || "Failed to send message";
         console.error("Formspree error:", errorMessage, data);
+        console.error("Response status:", response.status);
+        console.error("Full response:", data);
         
         toast({
           title: "Failed to send",
-          description: errorMessage || "Please check your Formspree configuration or try again later.",
+          description: errorMessage || "Please check your Formspree configuration. Make sure the recipient email (work.gunitvarshney@gmail.com) is configured in Formspree dashboard.",
           variant: "destructive",
         });
       }
