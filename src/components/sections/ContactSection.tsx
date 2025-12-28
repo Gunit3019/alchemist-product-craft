@@ -150,7 +150,7 @@ export const ContactSection = () => {
                 <div>
                   <p className="text-sm text-primary-foreground/70">Email us at</p>
                   <p className="font-semibold">
-                    hello@alchemistlabs.com
+                    connect@alchemistlabs.in
                   </p>
 
                 </div>
@@ -162,8 +162,8 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-sm text-primary-foreground/70">Call us at</p>
-                  <a href="tel:+919876543210" className="font-semibold hover:text-accent transition-colors">
-                    +91 98765 43210
+                  <a href="tel:+919521447712" className="font-semibold hover:text-accent transition-colors">
+                    +91 95214 47712
                   </a>
                 </div>
               </div>
