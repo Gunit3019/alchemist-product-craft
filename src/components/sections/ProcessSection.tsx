@@ -59,10 +59,10 @@ export const ProcessSection = () => {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className="relative group"
+                className="relative group h-full"
               >
                 {/* Step Card */}
-                <div className="bg-card rounded-2xl p-6 lg:p-8 shadow-soft border border-border/50 hover:border-accent/30 transition-all hover:shadow-medium">
+                <div className="bg-card rounded-2xl p-6 lg:p-8 shadow-soft border border-border/50 hover:border-accent/30 transition-all hover:shadow-medium h-full flex flex-col">
                   {/* Number badge */}
                   <div className="flex items-center justify-between mb-6">
                     <div className={`w-14 h-14 rounded-xl ${step.color} flex items-center justify-center`}>
@@ -77,7 +77,7 @@ export const ProcessSection = () => {
                   <h3 className="text-xl font-bold text-foreground mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed flex-grow">
                     {step.description}
                   </p>
                 </div>
