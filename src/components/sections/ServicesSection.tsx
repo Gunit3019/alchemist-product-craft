@@ -13,7 +13,6 @@ import { Button } from '@/components/ui/button';
 const services = [
   {
     icon: Globe,
-    number: '1️⃣',
     title: 'Digital Presence & Brand Foundations',
     subtitle: 'How your business shows up online',
     features: [
@@ -27,7 +26,6 @@ const services = [
   },
   {
     icon: Code,
-    number: '2️⃣',
     title: 'Product & Experience Development',
     subtitle: 'How users interact with your business',
     features: [
@@ -41,7 +39,6 @@ const services = [
   },
   {
     icon: Building2,
-    number: '3️⃣',
     title: 'Business & Operational Systems',
     subtitle: 'How your business actually runs',
     features: [
@@ -57,7 +54,6 @@ const services = [
   },
   {
     icon: TrendingUp,
-    number: '4️⃣',
     title: 'Sales, CRM & Revenue Systems',
     subtitle: 'How you acquire, manage, and grow customers',
     features: [
@@ -72,7 +68,6 @@ const services = [
   },
   {
     icon: Megaphone,
-    number: '5️⃣',
     title: 'Digital Marketing & Growth Engine',
     subtitle: 'How demand is created and amplified',
     features: [
@@ -87,7 +82,6 @@ const services = [
   },
   {
     icon: Sparkles,
-    number: '6️⃣',
     title: 'AI, Automation & Intelligent Systems',
     subtitle: 'How businesses scale smarter',
     features: [
@@ -101,7 +95,6 @@ const services = [
   },
   {
     icon: Compass,
-    number: '7️⃣',
     title: 'Software Consulting & Technology Advisory',
     subtitle: 'How the right decisions are made early',
     features: [
@@ -140,11 +133,10 @@ export const ServicesSection = () => {
               key={index}
               className="group bg-card rounded-2xl p-6 lg:p-8 shadow-soft card-hover border border-transparent hover:border-accent/20 h-full flex flex-col"
             >
-              {/* Number and Icon */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-2xl">{service.number}</span>
-                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <service.icon className="w-7 h-7 text-accent" />
+              {/* Icon */}
+              <div className="mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center group-hover:from-accent/30 group-hover:to-accent/20 transition-all group-hover:scale-110 group-hover:shadow-lg shadow-accent/20">
+                  <service.icon className="w-8 h-8 text-accent" />
                 </div>
               </div>
 
@@ -154,7 +146,7 @@ export const ServicesSection = () => {
               </h3>
 
               {/* Subtitle */}
-              <p className="text-sm text-muted-foreground/80 italic mb-4">
+              <p className="text-sm text-muted-foreground/70 italic mb-5">
                 {service.subtitle}
               </p>
 
@@ -169,9 +161,9 @@ export const ServicesSection = () => {
               </ul>
 
               {/* Outcome */}
-              <div className="pt-4 border-t border-border/50">
-                <p className="text-sm font-semibold text-foreground mb-1">Outcome:</p>
-                <p className="text-sm text-muted-foreground">{service.outcome}</p>
+              <div className="mt-auto pt-6 border-t border-border/50">
+                <p className="text-xs font-semibold text-accent uppercase tracking-wide mb-2">Outcome</p>
+                <p className="text-sm text-foreground/90 leading-relaxed">{service.outcome}</p>
               </div>
             </div>
           ))}
