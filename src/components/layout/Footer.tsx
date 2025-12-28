@@ -14,8 +14,8 @@ const footerLinks = {
     { label: 'Testimonials', href: '#testimonials' },
   ],
   contact: [
-    { label: 'hello@alchemistlabs.com', href: 'mailto:hello@alchemistlabs.com' },
-    { label: '+91 98765 43210', href: 'tel:+919876543210' },
+    { label: 'connect@alchemistlabs.in', href: 'mailto:connect@alchemistlabs.in' },
+    { label: '+91 95214 47712', href: 'tel:+919521447712' },
     { label: 'Mumbai, India', href: '#' },
   ],
 };
