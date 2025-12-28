@@ -1,43 +1,116 @@
 import { 
-  Compass, 
-  Rocket, 
-  Smartphone, 
-  Plug, 
-  TrendingUp,
+  Globe, 
+  Code, 
+  Building2, 
+  TrendingUp, 
+  Megaphone,
+  Sparkles,
+  Compass,
   ArrowRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const services = [
   {
-    icon: Compass,
-    title: 'Product Strategy & Consulting',
-    description: 'We help you define your product vision, validate market fit, and create a roadmap for success. Our strategic approach ensures your product solves real problems.',
-    features: ['Market Research', 'Product Roadmapping', 'Competitive Analysis', 'Go-to-Market Strategy'],
+    icon: Globe,
+    number: '1️⃣',
+    title: 'Digital Presence & Brand Foundations',
+    subtitle: 'How your business shows up online',
+    features: [
+      'Corporate & Informational Websites',
+      'CMS-Based Websites',
+      'Landing Pages & Campaign Websites',
+      'E-commerce Websites',
+      'Content & Performance-Optimized Web Experiences'
+    ],
+    outcome: 'Credible digital presence that attracts, informs, and converts.',
   },
   {
-    icon: Rocket,
-    title: 'MVP & Full-Scale Product Development',
-    description: 'From rapid prototypes to fully-featured products, we build solutions that scale. Our agile methodology ensures quick iterations and continuous improvement.',
-    features: ['Rapid Prototyping', 'Agile Development', 'Quality Assurance', 'Continuous Deployment'],
+    icon: Code,
+    number: '2️⃣',
+    title: 'Product & Experience Development',
+    subtitle: 'How users interact with your business',
+    features: [
+      'Web Applications',
+      'Mobile App Development (iOS, Android, Hybrid)',
+      'Customer & Partner Portals',
+      'Dashboards & Interactive Interfaces',
+      'UX/UI Design & Product Engineering'
+    ],
+    outcome: 'Scalable digital products built for real users and real workflows.',
   },
   {
-    icon: Smartphone,
-    title: 'Web & Mobile Application Development',
-    description: 'We create responsive web applications and native mobile apps that deliver exceptional user experiences across all devices and platforms.',
-    features: ['React & Next.js', 'Flutter & React Native', 'Progressive Web Apps', 'Cross-Platform Solutions'],
-  },
-  {
-    icon: Plug,
-    title: 'API Integrations & Automation',
-    description: 'Connect your systems, automate workflows, and build robust integrations that streamline operations and enhance productivity.',
-    features: ['Third-Party APIs', 'Custom Integrations', 'Workflow Automation', 'Data Synchronization'],
+    icon: Building2,
+    number: '3️⃣',
+    title: 'Business & Operational Systems',
+    subtitle: 'How your business actually runs',
+    features: [
+      'Enterprise Resource Planning (ERP) Systems',
+      'Hospital Management Systems (HMS)',
+      'Learning Management Systems (LMS)',
+      'Management Information Systems (MIS)',
+      'Restaurant Management Systems',
+      'Alumni & Community Portals',
+      'Internal Tools & Admin Panels'
+    ],
+    outcome: 'Digitized operations, improved efficiency, and centralized control.',
   },
   {
     icon: TrendingUp,
-    title: 'Product Scaling & Maintenance',
-    description: 'We help you scale your product infrastructure, optimize performance, and provide ongoing support to ensure long-term success.',
-    features: ['Performance Optimization', 'Infrastructure Scaling', '24/7 Support', 'Regular Updates'],
+    number: '4️⃣',
+    title: 'Sales, CRM & Revenue Systems',
+    subtitle: 'How you acquire, manage, and grow customers',
+    features: [
+      'Custom CRM Development',
+      'Salesforce Consulting & Implementation',
+      'HubSpot Development & Automation',
+      'Lead & Pipeline Management Systems',
+      'Sales Dashboards & Analytics',
+      'Workflow & Process Automation'
+    ],
+    outcome: 'Clear visibility into sales, stronger customer relationships, and scalable growth.',
+  },
+  {
+    icon: Megaphone,
+    number: '5️⃣',
+    title: 'Digital Marketing & Growth Engine',
+    subtitle: 'How demand is created and amplified',
+    features: [
+      'Search Engine Optimization (SEO)',
+      'Generative Engine Optimization (GEO)',
+      'Performance Marketing (PPC)',
+      'Social Media Marketing',
+      'Email Marketing & Campaign Automation',
+      'Affiliate & Viral Marketing'
+    ],
+    outcome: 'Consistent lead generation powered by data and automation.',
+  },
+  {
+    icon: Sparkles,
+    number: '6️⃣',
+    title: 'AI, Automation & Intelligent Systems',
+    subtitle: 'How businesses scale smarter',
+    features: [
+      'AI Agents & Chatbots',
+      'AI-Powered Workflow Automation',
+      'Predictive Analytics & Decision Systems',
+      'Custom Integrations & APIs',
+      'Intelligent Dashboards & Reporting'
+    ],
+    outcome: 'Reduced manual effort, faster decisions, and future-ready systems.',
+  },
+  {
+    icon: Compass,
+    number: '7️⃣',
+    title: 'Software Consulting & Technology Advisory',
+    subtitle: 'How the right decisions are made early',
+    features: [
+      'Product & System Architecture',
+      'Technology Stack Advisory',
+      'Digital Transformation Consulting',
+      'Scalability & Optimization Planning'
+    ],
+    outcome: 'Clear direction, reduced risk, and long-term technical stability.',
   },
 ];
 
@@ -65,41 +138,41 @@ export const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`group bg-card rounded-2xl p-6 lg:p-8 shadow-soft card-hover border border-transparent hover:border-accent/20 ${
-                index === 4 ? 'md:col-span-2 lg:col-span-1' : ''
-              }`}
+              className="group bg-card rounded-2xl p-6 lg:p-8 shadow-soft card-hover border border-transparent hover:border-accent/20 h-full flex flex-col"
             >
-              {/* Icon */}
-              <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                <service.icon className="w-7 h-7 text-accent" />
+              {/* Number and Icon */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-2xl">{service.number}</span>
+                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <service.icon className="w-7 h-7 text-accent" />
+                </div>
               </div>
 
-              {/* Content */}
-              <h3 className="text-xl font-bold text-foreground mb-3">
+              {/* Title */}
+              <h3 className="text-xl font-bold text-foreground mb-2">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                {service.description}
+
+              {/* Subtitle */}
+              <p className="text-sm text-muted-foreground/80 italic mb-4">
+                {service.subtitle}
               </p>
 
               {/* Features */}
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2 mb-6 flex-grow">
                 {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                    {feature}
+                  <li key={featureIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              {/* Link */}
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all"
-              >
-                Learn More
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              {/* Outcome */}
+              <div className="pt-4 border-t border-border/50">
+                <p className="text-sm font-semibold text-foreground mb-1">Outcome:</p>
+                <p className="text-sm text-muted-foreground">{service.outcome}</p>
+              </div>
             </div>
           ))}
         </div>
