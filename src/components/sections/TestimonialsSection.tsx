@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Quote, Star } from 'lucide-react';
 
 const testimonials = [
@@ -25,14 +26,42 @@ const testimonials = [
 ];
 
 const clientLogos = [
-  'Pace Marine',
-  'TechStart',
-  'FinServe',
-  'HealthPlus',
-  'RetailMax',
+  {
+    name: 'Darshan Dental Group of Hospitals',
+    logo: '/logos/darshan-dental.png',
+  },
+  {
+    name: 'Wonder Cement',
+    logo: '/logos/wonder-cement.png',
+  },
+  {
+    name: 'Infosys',
+    logo: '/logos/infosys.png',
+  },
+  {
+    name: 'Pacific College Udaipur',
+    logo: '/logos/pacific-college.png',
+  },
+  {
+    name: 'Pace Marine Solutions',
+    logo: '/logos/pace-marine.png',
+  },
 ];
 
 export const TestimonialsSection = () => {
+  const [currentLogoIndex, setCurrentLogoIndex] = useState(0);
+
+  // Simple auto-play carousel for client logos
+  useEffect(() => {
+    if (clientLogos.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentLogoIndex((prev) => (prev + 1) % clientLogos.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="testimonials" className="section-padding bg-secondary/50">
       <div className="container-custom">
@@ -87,20 +116,60 @@ export const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Client Logos */}
+        {/* Client Logos Carousel */}
         <div className="mt-16 pt-12 border-t border-border">
-          <p className="text-center text-muted-foreground text-sm mb-8">
-            Trusted by innovative companies
+          <p className="text-center text-muted-foreground text-sm mb-6">
+            Trusted by forward-thinking teams
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16">
-            {clientLogos.map((logo, index) => (
+
+          <div className="relative max-w-4xl mx-auto">
+            {/* Slides */}
+            <div className="overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm">
               <div
-                key={index}
-                className="text-xl font-bold text-muted-foreground/40 hover:text-accent transition-colors"
+                className="flex transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentLogoIndex * 100}%)` }}
               >
-                {logo}
+                {clientLogos.map((client, index) => (
+                  <div
+                    key={index}
+                    className="min-w-full flex items-center justify-center px-8 py-6 sm:py-8"
+                  >
+                    <div className="flex flex-col items-center gap-3 sm:gap-4">
+                      <div className="h-10 sm:h-14 md:h-16 flex items-center">
+                        <img
+                          src={client.logo}
+                          alt={client.name}
+                          className="h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                          loading="lazy"
+                        />
+                      </div>
+                      <p className="text-xs sm:text-sm text-muted-foreground/70 text-center max-w-xs">
+                        {client.name}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-4">
+              {clientLogos.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  aria-label={`Go to logo ${index + 1}`}
+                  onClick={() => setCurrentLogoIndex(index)}
+                  className={`h-2 w-2 rounded-full transition-all ${
+                    index === currentLogoIndex
+                      ? 'bg-accent w-5'
+                      : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Note: Place logo image files under /public/logos with the names used above */}
           </div>
         </div>
       </div>
