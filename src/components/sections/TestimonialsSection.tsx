@@ -109,16 +109,16 @@ export const TestimonialsSection = () => {
           </p>
 
           <div className="logo-slider-group max-w-6xl mx-auto py-4">
-            <div className="logo-slider gap-10 sm:gap-14 items-center">
+            <div className="logo-slider gap-10 sm:gap-16 items-center">
               {[...clientLogos, ...clientLogos].map((client, index) => (
                 <div
                   key={index}
-                  className="w-[160px] sm:w-[180px] aspect-[3/1] rounded-xl border border-border/60 bg-card/60 backdrop-blur-sm flex items-center justify-center px-4 hover:border-accent/60 hover:shadow-md transition-all"
+                  className="flex items-center justify-center"
                 >
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="max-h-10 sm:max-h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    className="max-h-8 sm:max-h-10 md:max-h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
                     loading="lazy"
                   />
                 </div>
