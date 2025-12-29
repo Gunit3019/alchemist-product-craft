@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Quote, Star } from 'lucide-react';
 
 const testimonials = [
@@ -49,19 +48,6 @@ const clientLogos = [
 ];
 
 export const TestimonialsSection = () => {
-  const [currentLogoIndex, setCurrentLogoIndex] = useState(0);
-
-  // Simple auto-play carousel for client logos
-  useEffect(() => {
-    if (clientLogos.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setCurrentLogoIndex((prev) => (prev + 1) % clientLogos.length);
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section id="testimonials" className="section-padding bg-secondary/50">
       <div className="container-custom">
@@ -116,56 +102,26 @@ export const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Client Logos Carousel */}
+        {/* Infinite Clients Slider */}
         <div className="mt-16 pt-12 border-t border-border">
           <p className="text-center text-muted-foreground text-sm mb-6">
             Trusted by forward-thinking teams
           </p>
 
-          <div className="relative max-w-4xl mx-auto">
-            {/* Slides */}
-            <div className="overflow-hidden rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm">
-              <div
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${currentLogoIndex * 100}%)` }}
-              >
-                {clientLogos.map((client, index) => (
-                  <div
-                    key={index}
-                    className="min-w-full flex items-center justify-center px-8 py-6 sm:py-8"
-                  >
-                    <div className="flex flex-col items-center gap-3 sm:gap-4">
-                      <div className="h-10 sm:h-14 md:h-16 flex items-center">
-                        <img
-                          src={client.logo}
-                          alt={client.name}
-                          className="h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
-                          loading="lazy"
-                        />
-                      </div>
-                      <p className="text-xs sm:text-sm text-muted-foreground/70 text-center max-w-xs">
-                        {client.name}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Dots */}
-            <div className="flex justify-center gap-2 mt-4">
-              {clientLogos.map((_, index) => (
-                <button
+          <div className="logo-slider-group max-w-6xl mx-auto py-4">
+            <div className="logo-slider gap-10 sm:gap-14 items-center">
+              {[...clientLogos, ...clientLogos].map((client, index) => (
+                <div
                   key={index}
-                  type="button"
-                  aria-label={`Go to logo ${index + 1}`}
-                  onClick={() => setCurrentLogoIndex(index)}
-                  className={`h-2 w-2 rounded-full transition-all ${
-                    index === currentLogoIndex
-                      ? 'bg-accent w-5'
-                      : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                  }`}
-                />
+                  className="w-[160px] sm:w-[180px] aspect-[3/1] rounded-xl border border-border/60 bg-card/60 backdrop-blur-sm flex items-center justify-center px-4 hover:border-accent/60 hover:shadow-md transition-all"
+                >
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="max-h-10 sm:max-h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    loading="lazy"
+                  />
+                </div>
               ))}
             </div>
 
