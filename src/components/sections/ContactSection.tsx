@@ -12,9 +12,10 @@ export const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     message: '',
-  });
+  });  
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateForm = () => {
@@ -32,6 +33,13 @@ export const ContactSection = () => {
       newErrors.email = 'Please enter a valid email';
     }
     
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^[0-9+\-\s]{8,15}$/.test(formData.phone)) {
+      newErrors.phone = 'Enter a valid phone number';
+    }
+    
+
     if (formData.company && formData.company.length > 100) {
       newErrors.company = 'Company name must be less than 100 characters';
     }
@@ -67,6 +75,7 @@ export const ContactSection = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           company: formData.company || "N/A",
           message: formData.message,
           _subject: `New Contact Form Submission from ${formData.name}`,
@@ -81,7 +90,7 @@ export const ContactSection = () => {
       if (response.ok && !data.error) {
         // Success - Formspree accepted the submission
         setIsSubmitted(true);
-        setFormData({ name: "", email: "", company: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", company: "", message: "" });
         setErrors({});
 
         console.log("Form submitted successfully to Formspree");
@@ -235,6 +244,23 @@ export const ContactSection = () => {
                   />
                   {errors.email && (
                     <p className="text-sm text-destructive mt-1">{errors.email}</p>
+                  )}
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                    Phone Number *
+                  </label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+91 98765 43210"
+                    className={errors.phone ? 'border-destructive' : ''}
+                  />
+                  {errors.phone && (
+                    <p className="text-sm text-destructive mt-1">{errors.phone}</p>
                   )}
                 </div>
 
