@@ -34,6 +34,14 @@ const clientLogos = [
     logo: '/logos/wonder-cement.png',
   },
   {
+    name: 'Crazyy Coffee',
+    logo: '/logos/crazy-coffee.png',
+  },
+  {
+    name: 'Urban Ladder',
+    logo: '/logos/urban-ladder.png',
+  },
+  {
     name: 'Infosys',
     logo: '/logos/infosys.png',
   },
