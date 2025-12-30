@@ -162,6 +162,21 @@
     animation: scaleIn 0.5s ease-out forwards;
   }
 
+  /* Infinite logo slider */
+  .logo-slider-group {
+    @apply relative overflow-hidden;
+  }
+
+  .logo-slider {
+    display: flex;
+    width: max-content;
+    animation: logoScroll 28s linear infinite;
+  }
+
+  .logo-slider-group:hover .logo-slider {
+    animation-play-state: paused;
+  }
+
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -208,6 +223,15 @@
     to { 
       opacity: 1; 
       transform: scale(1); 
+    }
+  }
+
+  @keyframes logoScroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
     }
   }
 

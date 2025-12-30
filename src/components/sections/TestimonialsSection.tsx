@@ -118,23 +118,23 @@ export const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Client Logos Grid */}
+        {/* Infinite Clients Slider */}
         <div className="mt-16 pt-12 border-t border-border">
           <h3 className="text-center text-2xl sm:text-3xl font-bold text-foreground mb-8">
             Leaders Adding Value in the Industry
           </h3>
 
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10 items-center justify-items-center">
-              {clientLogos.map((client, index) => (
+          <div className="logo-slider-group max-w-6xl mx-auto py-4">
+            <div className="logo-slider gap-8 sm:gap-12 lg:gap-16 items-center">
+              {[...clientLogos, ...clientLogos].map((client, index) => (
                 <div
-                  key={index}
-                  className="flex items-center justify-center w-full h-24 sm:h-28 md:h-32 px-4"
+                  key={`${client.name}-${index}`}
+                  className="flex items-center justify-center w-[32vw] sm:w-[22vw] lg:w-[18vw] max-w-[220px]"
                 >
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="max-h-12 sm:max-h-16 md:max-h-20 lg:max-h-24 w-auto object-contain opacity-70 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                    className="max-h-12 sm:max-h-16 md:max-h-20 lg:max-h-24 w-auto object-contain opacity-100 transition-transform duration-300"
                     loading="lazy"
                   />
                 </div>
