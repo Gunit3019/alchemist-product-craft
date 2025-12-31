@@ -58,70 +58,7 @@ export const ContactSection = () => {
   // 👆 IMPORTANT: Go to https://formspree.io/forms/mreggavw/settings
   // and configure the recipient email to: work.gunitvarshney@gmail.com
   
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
   
-    if (!validateForm()) return;
-  
-    setIsSubmitting(true);
-  
-    try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company || "N/A",
-          message: formData.message,
-          _subject: `New Contact Form Submission from ${formData.name}`,
-          _replyto: formData.email,
-          _format: "plain",
-        }),
-      });
-  
-      const data = await response.json();
-  
-      // Check if Formspree returned an error in the response body
-      if (response.ok && !data.error) {
-        // Success - Formspree accepted the submission
-        setIsSubmitted(true);
-        setFormData({ name: "", email: "", phone: "", company: "", message: "" });
-        setErrors({});
-
-        console.log("Form submitted successfully to Formspree");
-        toast({
-          title: "Message sent",
-          description: "We'll get back to you shortly.",
-        });
-      } else {
-        // Formspree returned an error
-        const errorMessage = data.error || data.message || "Failed to send message";
-        console.error("Formspree error:", errorMessage, data);
-        console.error("Response status:", response.status);
-        console.error("Full response:", data);
-        
-        toast({
-          title: "Failed to send",
-          description: errorMessage || "Please check your Formspree configuration. Make sure the recipient email (work.gunitvarshney@gmail.com) is configured in Formspree dashboard.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      toast({
-        title: "Network error",
-        description: "Check your internet connection and try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
   
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -211,7 +148,14 @@ export const ContactSection = () => {
                 </Button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form action="https://formspree.io/f/mreggavw" method="POST" className="space-y-6">
+
+  {/* Formspree required hidden fields */}
+  <input type="hidden" name="_subject" value="New Lead from Alchemist Labs" />
+  <input type="hidden" name="_replyto" value={formData.email} />
+  <input type="hidden" name="_template" value="table" />
+
+              
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
                     Your Name *

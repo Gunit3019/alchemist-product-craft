@@ -38,6 +38,10 @@ const clientLogos = [
     logo: '/logos/crazy-coffee.png',
   },
   {
+    name: 'MPUAT',
+    logo: '/logos/mpuat-udaipur.png',
+  },
+  {
     name: 'Urban Ladder',
     logo: '/logos/urban-ladder.png',
   },
